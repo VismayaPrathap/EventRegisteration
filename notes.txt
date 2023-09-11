@@ -1,0 +1,8 @@
+ <head> = basic info about the html document for the machine(?)
+ <a href=""> = here href is a mandatory attribute similiar ti src in <img src="">
+ <h1>Hello<h1> = this full line is called as an Element
+ HTML = Basic Layout/Content
+ CSS = Styling/Designing
+ JavaScript = Response/ Interactive Webpage
+ block elements = they take up the full width space(h1, p, etc)
+ inline elements = they take only their specific width space(a, span, etc)
