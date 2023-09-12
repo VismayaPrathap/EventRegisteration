@@ -70,3 +70,41 @@ class Event(models.Model):
    event_location = models.Charfield(max_length=70)
    date = models.CharField(max_length=10)
    description = models.TextField()
+
+17. python manage.py makemigration
+18. Register to table using:
+in admin.py:
+
+from .models import Event
+
+admin.site.register(Event)
+
+19. in views.py:
+from .models import Event
+
+in def index:
+   event = Event.object.all()
+   context ={
+      'events' : event
+   }
+
+20. In the django admin site, add an event, by inputting the details.
+21. for looping:
+in the index.html file:
+
+in the section id="events":
+   make it:
+
+   <section id="events">
+      {% for event in events %}
+      <div class=".....">
+         <h2>{{event.event_title}}<h2/>
+         <p>Location: {{event.event_location}}</p>
+         <p>Date: {{event.date}}</p>
+         <a/>
+      </div>
+      {% endfor %}
+      ........
+   </section>
+
+Then  just refresh
