@@ -7,5 +7,39 @@
  block elements = they take up the full width space(h1, p, etc)
  inline elements = they take only their specific width space(a, span, etc)
 
- framework= contains all basic securities, authentications, sessions,etc.
+ Framework:
+ contains all basic securities, authentications, sessions,etc.
  They have all the necessary requirements in a bundle, only we need to have the core logic with us, rest all is within with them.
+ wsgi= webserver gateway interface
+
+
+
+ Steps:
+ 1. Create a virtual environment using-> python3 -m venv foldername
+ 2. To activate virtual environment in Windows -> .\foldername\Scripts\activate
+ 3. Packages in Django -> pip install django
+ 4. To start a project -> django-admin startproject EventRegProject
+ 5. To create application -> python manage.py startapp eventapp
+ 6. In settings.py, go to INSTALLED_APPS, and there add the app like this: 'eventapp', at the end.
+ 7. In urls.py, add:
+ urlpatterns=[
+    path('admin/', admin.site.urls),
+    path('',include('eventapp.urls')),
+ ]
+ 
+ NOW GO TO EVENTAPP FOLDER, and WITHIN IT:
+ 8. create a urls.py file that contains:
+ from django.urls import path
+ from . import views
+ urlpatterns=[
+    path('',views.index, name='index')
+ ]
+
+ 9. in views.py (also in eventapp):
+ from django.shortcuts import render
+ from django.http import HttpResponse
+
+ def index(request):
+    return HttpResponse("Hai, you've arrived at index")
+
+command to run is: python manage.py runserver
