@@ -56,7 +56,7 @@ footer p{
 }
 .event_card, .details{
     box-shadow: 5px 5px 5px orange;
-    margin-top: 50px;
+    margin-top: 80px;
     padding: 30px;
     border-radius: 15px;
     width: 250px;
@@ -122,6 +122,8 @@ footer p{
     background-color: orange;
 }
 
-
-
+input{
+    background-color:  #C9AE5D;
+    border-radius: 3px;
+}
 
