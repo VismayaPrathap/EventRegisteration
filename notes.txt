@@ -43,3 +43,15 @@
     return HttpResponse("Hai, you've arrived at index")
 
 command to run is: python manage.py runserver
+
+10. In the eventapp folder, create a templates folder
+ then within this template folder, create a 'eventapp' folder.
+
+11. put the two html files(index, details) in this folder.
+After this, make changes in the views.py file:
+    return render(request,'eventapp/index.html')
+12. {% load static %} -> jinja format(?) right after the doctype! line in index.html
+13. create a 'static' folder, and put the the images and css and js files into it.
+14. then in the link href to the css file line......
+change to:
+<link rel="stylesheets" href="{% static 'style.css' %}">
