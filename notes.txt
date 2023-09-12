@@ -6,3 +6,6 @@
  JavaScript = Response/ Interactive Webpage
  block elements = they take up the full width space(h1, p, etc)
  inline elements = they take only their specific width space(a, span, etc)
+
+ framework= contains all basic securities, authentications, sessions,etc.
+ They have all the necessary requirements in a bundle, only we need to have the core logic with us, rest all is within with them.
