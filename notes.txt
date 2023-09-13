@@ -87,6 +87,7 @@ in def index:
    context ={
       'events' : event
    }
+   return render(request, 'eventapp/index.htm', context)
 
 20. In the django admin site, add an event, by inputting the details.
 21. for looping:
@@ -101,10 +102,69 @@ in the section id="events":
          <h2>{{event.event_title}}<h2/>
          <p>Location: {{event.event_location}}</p>
          <p>Date: {{event.date}}</p>
-         <a/>
+         <a></a>
       </div>
       {% endfor %}
       ........
    </section>
 
 Then  just refresh
+
+13th Sept 2023:
+1. do again: .\venv\Scripts\activate
+2. go to admin page (localhost:8000) in browser
+3. in models.py,to change object name to event title, add:
+def __str__(self):
+   return self.event_title
+
+4. in urls.py within the app-folder, create a path:
+urlpatterns=[
+    path('',views.index, name='index'),
+    path('event_details', views.details, name="details"),
+ ]
+
+views.details= views.htmlfilename
+
+5. in views.py file add:
+def detail(request):
+   return render(request,'eventapp/details.html')
+
+6. to render style changes: do the same thing as yesterday->
+in details.html file:
+do the {% load static %} right below doctype....
+and in the href add the same thing as in the ndex.html file.
+
+ in order to get different url each time:
+ 7. First go to index.html:
+ <section id="events">
+      {% for event in events %}
+      <div class=".....">
+         <h2>...<h2/>
+         <p>...</p>
+         <p></p>
+         <a href="{% url 'detail' event.pk %}"></a>
+      </div>
+      {% endfor %}
+      ........
+   </section>
+8. Then go to urls.py, and change:
+ urlpatterns=[
+    path('',views.index, name='index'),
+    path('event_details/<int:pk>', views.details, name="details"),
+ ]
+
+ 9. In views.py, change:
+
+def detail(request, pk):
+   eve_det = Event.objects.get(pk=pk)
+   context = {
+      'events': eve_det
+   }
+   return render(request, 'eventapp/details.html', context)
+
+   10. in details.html, change/add:
+   <h2>{{events.event_title}}<h2>
+   .....
+   <p>Date: {{events.date}}</p>
+   <p>Location: {{events.location}}</p>
+   <p>Description: {{events.decriptio}}</p>
