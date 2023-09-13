@@ -231,3 +231,6 @@ def detail(request, pk):
          'forms' :  form
       }
       return render(request, 'eventapp/details.html', context) (eventapp=path)
+
+
+   Make an account in render.com, for to host the site!!
