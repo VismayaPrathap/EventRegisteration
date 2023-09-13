@@ -160,7 +160,7 @@ def detail(request, pk):
    context = {
       'events': eve_det
    }
-   return render(request, 'eventapp/details.html', context)
+   return render(request, 'eventapp/details.html', context) (eventapp==path)
 
    10. in details.html, change/add:
    <h2>{{events.event_title}}<h2>
