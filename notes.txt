@@ -167,4 +167,4 @@ def detail(request, pk):
    .....
    <p>Date: {{events.date}}</p>
    <p>Location: {{events.location}}</p>
-   <p>Description: {{events.decriptio}}</p>
+   <p>Description: {{events.decription}}</p>
