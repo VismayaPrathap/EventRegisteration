@@ -174,9 +174,7 @@ def detail(request, pk):
       reg_name = models.CharField(max_length=35)
       reg_ mail= models.Emailfield(max_length=20)
       reg_number = models.DcimalField(max_digits=10, decimal_places=None)
-
-      def __str__(self):
-         return self.event_title
+      event = models.ForeignKey("Event",on_delete=models.CASCADE)
 
 12. migrate, using 
 python manage.py makemigrations
@@ -217,3 +215,19 @@ def detail(request, pk):
    .....delete things within form excluding button...
 
    </form>
+
+   17. change in views.py:
+   def detail(request, pk):
+      eve_det = Event.objects.get(pk=pk)
+      if request.method == "post":
+         form=Eventform(request.POST)
+         if form.isvalid():
+            entree = form.save(commit=false)
+            entree.event = eve_det
+            entree.save()
+      form = Eventform()
+      context = {
+         'events': eve_det,
+         'forms' :  form
+      }
+      return render(request, 'eventapp/details.html', context) (eventapp=path)
