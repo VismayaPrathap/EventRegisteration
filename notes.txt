@@ -71,7 +71,7 @@ class Event(models.Model):
    date = models.CharField(max_length=10)
    description = models.TextField()
 
-17. python manage.py makemigration
+17. python manage.py makemigrations
 18. Register to table using:
 in admin.py:
 
@@ -113,7 +113,7 @@ Then  just refresh
 13th Sept 2023:
 1. do again: .\venv\Scripts\activate
 2. go to admin page (localhost:8000) in browser
-3. in models.py,to change object name to event title, add:
+3. in models.py,to change object name to event title, add within the existing class:
 def __str__(self):
    return self.event_title
 
@@ -162,9 +162,58 @@ def detail(request, pk):
    }
    return render(request, 'eventapp/details.html', context) (eventapp==path)
 
-   10. in details.html, change/add:
+  10. in details.html, change/add:
    <h2>{{events.event_title}}<h2>
    .....
    <p>Date: {{events.date}}</p>
    <p>Location: {{events.location}}</p>
    <p>Description: {{events.decription}}</p>
+
+11. go to models.py, create class:
+   class Entrees(models.Model):
+      reg_name = models.CharField(max_length=35)
+      reg_ mail= models.Emailfield(max_length=20)
+      reg_number = models.DcimalField(max_digits=10, decimal_places=None)
+
+      def __str__(self):
+         return self.event_title
+
+12. migrate, using 
+python manage.py makemigrations
+python manage.py migrate
+
+13. 18. Register to table using:
+in admin.py, add:
+
+admin.site.register(Entrees)
+
+14. create a file forms.py in eventapp folder:
+from django import forms
+from .models import Entrees
+
+class Eventform(forms.modelForm):
+   class Meta:
+      model = Entrees
+      fields = ['reg_name', 'reg_ mail', ' reg_number']
+
+15. in views.py:
+
+from .forms import Eventform
+def detail(request, pk):
+   if request.method= == "post":
+      print("got post request from frontend")
+   eve_det = Event.objects.get(pk=pk)
+   form = Eventform()
+   context = {
+      'events': eve_det,
+      'forms' :  form
+   }
+   return render(request, 'eventapp/details.html', context) (eventapp=path)
+
+   16. in details.html: 
+   <form action="{% url 'detail' event.pk %} method="post">
+   {% csrf_token %}
+   {{form.as_p}}
+   .....delete things within form excluding button...
+
+   </form>
