@@ -234,3 +234,16 @@ def detail(request, pk):
 
 
    Make an account in render.com, for to host the site!!
+
+   create new repository?
+
+   the random codes sent should be added as a file, (sibling to manage.py):
+   .gitignore
+
+   do some seps in between.....
+
+   then:
+
+   debug=FALSE in settings.py
+   change something in static?
+   
